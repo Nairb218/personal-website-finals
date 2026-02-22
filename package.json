@@ -1,0 +1,13 @@
+{
+  "name": "personal-website-finals",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:api": "cd api && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd api && npm install && cd ../frontend && npm install",
+    "build:api": "cd api && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:api && npm run build:frontend"
+  }
+}
