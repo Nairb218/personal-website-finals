@@ -86,8 +86,8 @@
 </template>
 
 <script setup>
-import colnIcon from '@/assets/coln.png'
-import ivosIcon from '@/assets/andaluciaIVOS.png'
+import colnIcon from '@/assets/lasonColn.jpg'
+import ivosIcon from '@/assets/ivosAndalucia.jpg'
 import laufeyIcon from '@/assets/laufey.png'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
