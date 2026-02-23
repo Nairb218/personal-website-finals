@@ -99,8 +99,8 @@
       </div>
     </div>
 
-    <!-- Hidden YouTube Player -->
-    <div ref="ytContainer" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;">
+    <!-- Hidden YouTube Player (must have real size for WebView compatibility) -->
+    <div ref="ytContainer" style="position:fixed;bottom:0;left:0;width:200px;height:200px;opacity:0.01;pointer-events:none;z-index:-1;">
       <div id="yt-player"></div>
     </div>
   </div>
@@ -168,6 +168,7 @@ function initPlayer(videoId) {
         fs: 0,
         modestbranding: 1,
         rel: 0,
+        playsinline: 1,
       },
       events: {
         onReady: (e) => {
