@@ -11,7 +11,7 @@
       :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/20 text-light-accent'"
       @click="retryPlay"
     >
-      🔇 Audio blocked by browser — tap here to enable playback
+      🔇 Audio blocked — tap the video player below to start
     </div>
 
     <!-- Now Playing -->
@@ -99,8 +99,14 @@
       </div>
     </div>
 
-    <!-- Hidden YouTube Player (must have real size for WebView compatibility) -->
-    <div ref="ytContainer" style="position:fixed;bottom:0;left:0;width:200px;height:200px;opacity:0.01;pointer-events:none;z-index:-1;">
+    <!-- YouTube Player - becomes visible when autoplay is blocked for direct interaction -->
+    <div
+      ref="ytContainer"
+      class="rounded-xl overflow-hidden"
+      :style="autoplayBlocked
+        ? 'margin-top: 8px; height: 180px;'
+        : 'position: fixed; bottom: 0; left: 0; width: 300px; height: 200px; opacity: 0.01; pointer-events: none; z-index: -1;'"
+    >
       <div id="yt-player"></div>
     </div>
   </div>
@@ -158,12 +164,12 @@ function loadYTApi() {
 function initPlayer(videoId) {
   return new Promise((resolve) => {
     player = new window.YT.Player('yt-player', {
-      height: '1',
-      width: '1',
+      height: '200',
+      width: '300',
       videoId,
       playerVars: {
         autoplay: 0,
-        controls: 0,
+        controls: 1,
         disablekb: 1,
         fs: 0,
         modestbranding: 1,
@@ -174,6 +180,13 @@ function initPlayer(videoId) {
         onReady: (e) => {
           e.target.setVolume(volume.value)
           e.target.unMute()
+          // Add autoplay permission & responsive sizing for WebView support
+          const iframe = document.querySelector('#yt-player')
+          if (iframe && iframe.tagName === 'IFRAME') {
+            iframe.setAttribute('allow', 'autoplay; encrypted-media')
+            iframe.style.width = '100%'
+            iframe.style.height = '100%'
+          }
           resolve()
         },
         onStateChange: (e) => {
@@ -183,6 +196,12 @@ function initPlayer(videoId) {
           if (e.data === window.YT.PlayerState.PLAYING) {
             duration.value = player.getDuration()
             autoplayBlocked.value = false
+            isPlaying.value = true
+            startProgressTracking()
+          }
+          if (e.data === window.YT.PlayerState.PAUSED) {
+            isPlaying.value = false
+            stopProgressTracking()
           }
         },
         onError: () => {
@@ -228,11 +247,27 @@ function checkPlaybackStarted() {
   }, 2000)
 }
 
+function unlockAudio() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext
+    if (AudioCtx) {
+      const ctx = new AudioCtx()
+      const buf = ctx.createBuffer(1, 1, 22050)
+      const src = ctx.createBufferSource()
+      src.buffer = buf
+      src.connect(ctx.destination)
+      src.start(0)
+      setTimeout(() => ctx.close(), 100)
+    }
+  } catch (e) { /* ignore */ }
+}
+
 async function playSong(index) {
   currentIndex.value = index
   currentTime.value = 0
   duration.value = 0
   autoplayBlocked.value = false
+  unlockAudio()
 
   if (!player) {
     await loadYTApi()
@@ -250,15 +285,15 @@ async function playSong(index) {
 }
 
 function retryPlay() {
-  autoplayBlocked.value = false
+  unlockAudio()
   if (player) {
     player.unMute()
     player.setVolume(volume.value)
     player.playVideo()
-    isPlaying.value = true
-    startProgressTracking()
+    // Let onStateChange handle autoplayBlocked + isPlaying
     checkPlaybackStarted()
   } else {
+    autoplayBlocked.value = false
     playSong(currentIndex.value)
   }
 }
@@ -273,12 +308,11 @@ function togglePlay() {
     isPlaying.value = false
     stopProgressTracking()
   } else {
-    autoplayBlocked.value = false
+    unlockAudio()
     player.unMute()
     player.setVolume(volume.value)
     player.playVideo()
-    isPlaying.value = true
-    startProgressTracking()
+    // Let onStateChange handle autoplayBlocked + isPlaying
     checkPlaybackStarted()
   }
 }
@@ -346,5 +380,9 @@ onBeforeUnmount(() => {
 }
 .playlist-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(128, 128, 128, 0.5);
+}
+:deep(#yt-player) {
+  width: 100% !important;
+  height: 100% !important;
 }
 </style>
