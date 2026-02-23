@@ -29,5 +29,7 @@ const interests = [
   '𖣐 Anime',
   '🍳 Cooking',
   '💻 Programming',
+  '🐶 Dogs ',
+  '🐱 Cats '
 ]
 </script>

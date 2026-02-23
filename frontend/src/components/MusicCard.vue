@@ -4,6 +4,16 @@
       <span>♫</span> Now Playing
     </h3>
 
+    <!-- Autoplay Blocked Banner -->
+    <div
+      v-if="autoplayBlocked"
+      class="mb-2 p-2 rounded-lg text-center text-xs font-medium cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-95"
+      :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/20 text-light-accent'"
+      @click="retryPlay"
+    >
+      🔇 Audio blocked by browser — tap here to enable playback
+    </div>
+
     <!-- Now Playing -->
     <div class="flex items-center gap-3">
       <div
@@ -116,9 +126,11 @@ const currentTime = ref(0)
 const duration = ref(0)
 const volume = ref(80)
 const progressBar = ref(null)
+const autoplayBlocked = ref(false)
 
 let player = null
 let progressInterval = null
+let playCheckTimeout = null
 
 const currentSong = computed(() => playlist[currentIndex.value])
 const progressPercent = computed(() => (duration.value > 0 ? (currentTime.value / duration.value) * 100 : 0))
@@ -160,6 +172,7 @@ function initPlayer(videoId) {
       events: {
         onReady: (e) => {
           e.target.setVolume(volume.value)
+          e.target.unMute()
           resolve()
         },
         onStateChange: (e) => {
@@ -168,7 +181,13 @@ function initPlayer(videoId) {
           }
           if (e.data === window.YT.PlayerState.PLAYING) {
             duration.value = player.getDuration()
+            autoplayBlocked.value = false
           }
+        },
+        onError: () => {
+          autoplayBlocked.value = true
+          isPlaying.value = false
+          stopProgressTracking()
         },
       },
     })
@@ -194,10 +213,25 @@ function stopProgressTracking() {
   }
 }
 
+function checkPlaybackStarted() {
+  if (playCheckTimeout) clearTimeout(playCheckTimeout)
+  playCheckTimeout = setTimeout(() => {
+    if (player && typeof player.getPlayerState === 'function') {
+      const state = player.getPlayerState()
+      if (state === -1 || state === 2 || state === 5) {
+        autoplayBlocked.value = true
+        isPlaying.value = false
+        stopProgressTracking()
+      }
+    }
+  }, 2000)
+}
+
 async function playSong(index) {
   currentIndex.value = index
   currentTime.value = 0
   duration.value = 0
+  autoplayBlocked.value = false
 
   if (!player) {
     await loadYTApi()
@@ -206,10 +240,26 @@ async function playSong(index) {
     player.loadVideoById(playlist[index].videoId)
   }
 
+  player.unMute()
   player.setVolume(volume.value)
   player.playVideo()
   isPlaying.value = true
   startProgressTracking()
+  checkPlaybackStarted()
+}
+
+function retryPlay() {
+  autoplayBlocked.value = false
+  if (player) {
+    player.unMute()
+    player.setVolume(volume.value)
+    player.playVideo()
+    isPlaying.value = true
+    startProgressTracking()
+    checkPlaybackStarted()
+  } else {
+    playSong(currentIndex.value)
+  }
 }
 
 function togglePlay() {
@@ -222,9 +272,13 @@ function togglePlay() {
     isPlaying.value = false
     stopProgressTracking()
   } else {
+    autoplayBlocked.value = false
+    player.unMute()
+    player.setVolume(volume.value)
     player.playVideo()
     isPlaying.value = true
     startProgressTracking()
+    checkPlaybackStarted()
   }
 }
 
@@ -245,6 +299,9 @@ function setVolume(val) {
   volume.value = val
   if (player && typeof player.setVolume === 'function') {
     player.setVolume(val)
+    if (val > 0 && typeof player.unMute === 'function') {
+      player.unMute()
+    }
   }
 }
 
@@ -264,6 +321,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   stopProgressTracking()
+  if (playCheckTimeout) clearTimeout(playCheckTimeout)
   if (player && typeof player.destroy === 'function') {
     player.destroy()
   }

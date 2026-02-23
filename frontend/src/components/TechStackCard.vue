@@ -10,7 +10,7 @@
         class="flex flex-col items-center gap-1 p-2 rounded-xl transition-all duration-300 cursor-default hover:scale-105"
         :class="isDark ? 'bg-dark-border hover:bg-dark-accent/10' : 'bg-sky-50 hover:bg-light-accent/10'"
       >
-        <img :src="tech.icon" :alt="tech.name" class="w-7 h-7 object-contain" />
+        <img :src="tech.icon" :alt="tech.name" class="w-7 h-9 object-contain" />
         <span class="text-[10px] font-medium text-center leading-tight">{{ tech.name }}</span>
         <div class="w-full h-1 rounded-full overflow-hidden" :class="isDark ? 'bg-dark-bg' : 'bg-gray-200'">
           <div

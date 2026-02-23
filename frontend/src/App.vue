@@ -7,7 +7,7 @@
       <!-- Header -->
       <header class="max-w-7xl mx-auto flex items-center justify-between mb-8">
         <h1 class="text-2xl font-bold tracking-tight">
-          <span :class="isDark ? 'text-dark-accent' : 'text-light-accent'">My</span>Portfolio
+          <span :class="isDark ? 'text-dark-accent' : 'text-light-accent'">N.</span>
         </h1>
         <button
           @click="toggleTheme"
@@ -17,7 +17,7 @@
             : 'bg-light-card border border-light-border text-gray-700 hover:bg-gray-100'"
           :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
         >
-          <span class="text-xl">{{ isDark ? '☀️' : '🌑' }}</span>
+          <span class="text-xl">{{ isDark ? '✹' : '⬤' }}</span>
         </button>
       </header>
 
