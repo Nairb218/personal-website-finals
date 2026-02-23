@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Header -->
-    <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+    <h3 class="text-lg font-semibold mb-2 flex items-center gap-2">
       <span>🏞️</span> Gallery
       <button
         @click="showModal = true"
@@ -12,18 +12,21 @@
       </button>
     </h3>
 
-    <!-- Grid Preview -->
-    <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+    <!-- Grid Preview: strict 3 cols × 2 rows, first 6 only -->
+    <div class="grid grid-cols-3 gap-1.5">
       <div
-        v-for="(item, i) in gallery"
+        v-for="(item, i) in previewGallery"
         :key="i"
-        class="h-24 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
+        class="aspect-square rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
         :class="isDark ? 'bg-dark-border' : 'bg-sky-50'"
         @click="openPhoto(item)"
       >
-        <div class="w-full h-full flex items-center justify-center">
-          <img :src="item.src" :alt="item.alt" class="w-full h-full object-cover" />
-        </div>
+        <img
+          :src="item.src"
+          :alt="item.alt"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
       </div>
     </div>
 
@@ -96,7 +99,7 @@
           <!-- Photo -->
           <img
             :src="selectedPhoto.src"
-            :alt="selected.alt"
+            :alt="selectedPhoto.alt"
             class="max-w-[90vw] max-h-[90vh] rounded-2xl object-contain shadow-2xl"
           />
 
@@ -117,7 +120,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import antipsHand from '../assets/antipsHand.jpg'
 import champs from '../assets/champs.jpg'
 import keysnchrods25 from "../assets/keysnchrods'25.jpg"
@@ -166,6 +169,8 @@ const gallery = [
   { src: lugawanbabies, alt: 'Lugawan Babies' },
   { src: lugawanmat, alt: 'Lugawan sa Debut ni Namih' },
 ]
+
+const previewGallery = computed(() => gallery.slice(0, 6))
 
 function openPhoto(item) {
   selectedPhoto.value = item

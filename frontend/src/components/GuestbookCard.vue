@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-      <span>📖</span> Guestbook
+      <span></span> Guestbook
     </h3>
 
     <!-- Form -->
@@ -196,8 +196,10 @@ import axios from 'axios'
 
 const props = defineProps({ isDark: Boolean })
 
-// API base URL - change to your deployed backend URL in production
-const API_BASE = import.meta.env.VITE_API_URL || '/api'
+// API base URL
+// Local dev: VITE_API_URL=/api (Vite proxy rewrites to localhost:3000)
+// Production: defaults to '' so calls go to /guestbook which Vercel routes to the API
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const form = ref({
   name: '',
