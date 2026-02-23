@@ -8,15 +8,12 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Light mode defaults */
 body {
   background-color: #e0f2fe;
   color: #0f172a;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark mode overrides */

@@ -16,7 +16,7 @@
             v-model="form.name"
             type="text"
             placeholder="Your name"
-            maxlength="50"
+            maxlength="20"
             class="w-full px-3 py-2 rounded-xl text-sm outline-none transition-all duration-300 border"
             :class="isDark
               ? 'bg-dark-border border-dark-border text-dark-text placeholder-dark-muted focus:border-dark-accent'

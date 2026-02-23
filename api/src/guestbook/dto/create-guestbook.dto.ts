@@ -8,14 +8,14 @@ export enum Visibility {
 export class CreateGuestbookDto {
   @IsString()
   @IsNotEmpty({ message: 'Name is required' })
-  @MinLength(2, { message: 'Name must be at least 2 characters' })
-  @MaxLength(50, { message: 'Name must not exceed 50 characters' })
+  @MinLength(1, { message: 'Name must be at least 1 characters' })
+  @MaxLength(50, { message: 'Name must not exceed 20 characters' })
   name: string;
 
   @IsString()
   @IsNotEmpty({ message: 'Message is required' })
-  @MinLength(3, { message: 'Message must be at least 3 characters' })
-  @MaxLength(500, { message: 'Message must not exceed 500 characters' })
+  @MinLength(5, { message: 'Message must be at least 5 characters' })
+  @MaxLength(300, { message: 'Message must not exceed 300 characters' })
   message: string;
 
   @IsEnum(Visibility, { message: 'Visibility must be public or private' })
