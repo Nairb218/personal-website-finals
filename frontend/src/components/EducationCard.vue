@@ -24,7 +24,8 @@
 defineProps({ isDark: Boolean })
 
 const education = [
-  { school: 'University Name', degree: 'B.S. Computer Science', year: '2022 – 2026' },
-  { school: 'Senior High School', degree: 'STEM Strand', year: '2020 – 2022' },
+  { school: 'Asia Pacific College', degree: 'B.S. Information Technology', year: '2024 – Present' },
+  { school: 'Pasay City South High School', degree: 'HUMSS Strand', year: '2019 – 2024' },
+  { school: 'Maricaban Elementary School', degree: 'Grade School', year: '2010 – 2016' },
 ]
 </script>
