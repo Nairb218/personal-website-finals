@@ -67,17 +67,10 @@
         ]"
         @click="playSong(i)"
       >
-        <!-- Icon / Playing Indicator -->
-        <div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 relative">
-          <img :src="song.icon" :alt="song.title" class="w-full h-full object-cover" />
-          <div
-            v-if="currentIndex === i && isPlaying"
-            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-xs"
-          >
-            ♫
-          </div>
-        </div>
-
+        <span class="text-xs w-4 text-center" :class="isDark ? 'text-dark-muted' : 'text-light-muted'">
+          <span v-if="currentIndex === i && isPlaying">♫</span>
+          <span v-else>{{ i + 1 }}</span>
+        </span>
         <div class="flex-1 min-w-0">
           <p class="text-xs font-medium truncate">{{ song.title }}</p>
           <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-xs truncate">{{ song.artist }}</p>
@@ -93,17 +86,14 @@
 </template>
 
 <script setup>
-import laufeyIcon from '@/assets/laufey.png'
-import ivosIcon from '@/assets/andalucialVOS.jpg'
-import colnIcon from '@/assets/lasonColn.jpg'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 defineProps({ isDark: Boolean })
 
 const playlist = [
-  { icon: laufeyIcon, title: 'Serendipity', artist: 'Laufey', videoId: 'WIj7VVFpvCs' },
-  { icon: ivosIcon, title: 'Karma', artist: 'IV of Spades', videoId: 't9IKlvreloo' },
-  { icon: colnIcon, title: 'Lason', artist: 'COLN', videoId: 'JRtJXGoVIoA' },
+  { title: 'Serendipity', artist: 'Laufey', videoId: 'WIj7VVFpvCs' },
+  { title: 'Karma', artist: 'IV of Spades', videoId: 't9IKlvreloo' },
+  { title: 'Lason', artist: 'COLN', videoId: 'JRtJXGoVIoA' },
 ]
 
 const currentIndex = ref(0)
