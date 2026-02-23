@@ -27,9 +27,9 @@
 </template>
 
 <script setup>
-import emailIcon from '@/assets/email-icon.png'
-import githubIcon from '@/assets/github-icon.png'
-import linkedinIcon from '@/assets/linkedin-icon.png'
+import emailIcon from '@/logos/Outlook.com-Logo.wine.svg'
+import githubIcon from '@/logos/GitHub-logo.png'
+import linkedinIcon from '@/logos/linkedin-logo.webp'
 
 defineProps({ isDark: Boolean })
 
@@ -37,6 +37,6 @@ const links = [
   { icon: emailIcon, label: 'Email', value: 'ngvarona@student.apc.edu.ph', url: 'https://myaccount.microsoft.com/?ref=MeControl' },
   { icon: githubIcon, label: 'GitHub', value: 'github.com/Nairb218', url: 'https://github.com/Nairb218' },
   { icon: linkedinIcon, label: 'LinkedIn', value: 'linkedin.com/in/nairb-ackillis-varona-700054293/', url: 'https://www.linkedin.com/in/nairb-ackillis-varona-83b184322/' },
-  { icon: '📞', label: 'Contact Num', value: '0950 801 3908'},
+  { icon: '📞', label: 'Phone No.', value: '0950 801 3908'},
 ]
 </script>
