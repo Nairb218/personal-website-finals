@@ -96,7 +96,7 @@
           <!-- Photo -->
           <img
             :src="selectedPhoto.src"
-            :alt="selectedPhoto.alt"
+            :alt="selected.alt"
             class="max-w-[90vw] max-h-[90vh] rounded-2xl object-contain shadow-2xl"
           />
 
@@ -125,6 +125,19 @@ import kyoirb from '../assets/kyoirb.jpg'
 import sabitPanyeng from '../assets/sabitPanyeng.jpg'
 import trioGae from '../assets/trioGae.jpg'
 import wRomeo from '../assets/wRomeo.jpg'
+import saintNairb from '../assets/saintNairb.jpg'
+import hearts4 from '../assets/hearts4.jpg'
+import lugawanbabies from '../assets/lugawanbabies.jpg'
+import lugawanmat from '../assets/lugawanmat.jpg'
+import anghelNairb from '../assets/anghelNairb.jpg'
+import bgcSad from '../assets/bgcSadboi.jpg'
+import intra from '../assets/intraa.jpg'
+import intra2 from '../assets/intraparin.jpg'
+import meinheart from '../assets/meinheart.jpg'
+import nyipieo from '../assets/nyipieo.jpg'
+import questionMark from '../assets/questionMark.jpg'
+import sleepingTrio from '../assets/sleepingTrio.jpg'
+import trio from '../assets/trio.jpg'
 
 defineProps({ isDark: Boolean })
 
@@ -132,13 +145,26 @@ const showModal = ref(false)
 const selectedPhoto = ref(null)
 
 const gallery = [
-  { src: antipsHand, alt: 'Antips Hand' },
+  { src: hearts4, alt: 'Hearts 4' },
+  { src: saintNairb, alt: 'Saint Nairb' },
+  { src: anghelNairb, alt: 'Angel Nairb' },
+  { src: bgcSad, alt: 'BGC Sadboi' },
+  { src: intra, alt: 'Intra' },
+  { src: intra2, alt: 'Intra pa rin' },
+  { src: meinheart, alt: 'Meinheart' },
+  { src: nyipieo, alt: 'Nyipieo' },
+  { src: questionMark, alt: '?' },
+  { src: sleepingTrio, alt: 'My Trio' },
+  { src: trio, alt: 'Trio uli' },
+  { src: antipsHand, alt: 'Antips' },
   { src: champs, alt: 'Champs' },
   { src: keysnchrods25, alt: "Keysnchrods '25" },
-  { src: kyoirb, alt: 'Kyoirb' },
+  { src: kyoirb, alt: 'w Kyo' },
   { src: sabitPanyeng, alt: 'Sabit Panyeng' },
   { src: trioGae, alt: 'Trio Gae' },
-  { src: wRomeo, alt: 'W Romeo' },
+  { src: wRomeo, alt: 'w Leo' },
+  { src: lugawanbabies, alt: 'Lugawan Babies' },
+  { src: lugawanmat, alt: 'Lugawan sa Debut ni Namih' },
 ]
 
 function openPhoto(item) {
