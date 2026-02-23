@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-      <span>🖼️</span> Gallery
+      <span>🏞️</span> Gallery
     </h3>
     <div class="grid grid-cols-3 gap-2">
       <div

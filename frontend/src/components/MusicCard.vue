@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-      <span>🎵</span> Now Playing
+      <span>♫</span> Now Playing
     </h3>
     <div class="flex items-center gap-3">
       <div

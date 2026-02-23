@@ -25,5 +25,5 @@
 <script setup>
 defineProps({ isDark: Boolean })
 
-const tags = ['Creative', 'Problem Solver', 'Team Player', 'Fast Learner']
+const tags = ['Developer', 'Musician', 'Team Player', 'Fast Learner', 'Problem Solver']
 </script>

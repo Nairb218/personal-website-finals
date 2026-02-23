@@ -38,7 +38,7 @@
                 ? (isDark ? 'bg-dark-accent/20 border-dark-accent text-dark-accent' : 'bg-light-accent/10 border-light-accent text-light-accent')
                 : (isDark ? 'bg-dark-border border-dark-border text-dark-muted' : 'bg-sky-50 border-light-border text-light-muted')"
             >
-              🔓 Public
+              🌎 Public
             </button>
             <button
               type="button"
@@ -101,7 +101,7 @@
           </svg>
           Sending...
         </span>
-        <span v-else>Sign Guestbook ✍️</span>
+        <span v-else>Sign Guestbook 𓂃🖊</span>
       </button>
 
       <!-- Status Messages -->

@@ -11,7 +11,7 @@
         👤
       </div>
     </div>
-    <h2 class="text-xl font-bold mb-1">Your Name</h2>
+    <h2 class="text-xl font-bold mb-1">Nairb Ackillis Varona</h2>
     <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-sm">
       Full-Stack Developer
     </p>
@@ -20,7 +20,7 @@
         class="px-3 py-1 rounded-full text-xs font-medium transition-colors duration-300"
         :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/10 text-light-accent'"
       >
-        Open to Work
+        Open for Challenges
       </span>
     </div>
   </div>

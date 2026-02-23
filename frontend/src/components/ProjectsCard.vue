@@ -43,32 +43,25 @@ defineProps({ isDark: Boolean })
 
 const projects = [
   {
-    name: 'Personal Portfolio',
+    name: 'Personal Portfolio Website',
     icon: '🌐',
     description: 'A modern bento-grid portfolio built with Vue.js, NestJS, and Supabase.',
     status: 'Live',
     tags: ['Vue', 'NestJS', 'Supabase'],
   },
   {
-    name: 'Task Manager',
-    icon: '✅',
-    description: 'Full-stack task management app with authentication and real-time updates.',
+    name: 'ResQTag',
+    icon: '🐶',
+    description: 'A Pet Tag Application that helps pet owners keep track of their pets and ensure their safety.',
     status: 'Completed',
-    tags: ['React', 'Node.js', 'MongoDB'],
+    tags: ['Outsystems'],
   },
   {
-    name: 'Weather App',
-    icon: '🌤️',
-    description: 'Real-time weather application with location services and beautiful UI.',
+    name: 'Personal Profile Mobile App',
+    icon: '👤',
+    description: 'A Mobile Application that serves as a personal profile, showcasing my skills, projects, and contact information.',
     status: 'Completed',
-    tags: ['Vue', 'API', 'CSS'],
-  },
-  {
-    name: 'E-Commerce Store',
-    icon: '🛒',
-    description: 'Online marketplace with cart, checkout, and payment integration.',
-    status: 'In Progress',
-    tags: ['Next.js', 'Stripe', 'PostgreSQL'],
-  },
+    tags: ['Dart', 'Flutter'],
+  }
 ]
 </script>
