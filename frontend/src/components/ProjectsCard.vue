@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import resqtagLogo from '@/assets/ResQTag-Logo.png'
+import resqtagLogo from '@/logos/ResQTag-Logo.png'
 defineProps({ isDark: Boolean })
 
 const projects = [
