@@ -24,11 +24,10 @@ defineProps({ isDark: Boolean })
 const interests = [
   '🎮 Gaming',
   '📚 Reading',
-  '🎨 Design',
   '🎵 Music',
-  '✈️ Travel',
-  '📷 Photography',
   '🏋️ Fitness',
-  '🎬 Movies',
+  '𖣐 Anime',
+  '🍳 Cooking',
+  '💻 Programming',
 ]
 </script>

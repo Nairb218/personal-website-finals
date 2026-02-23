@@ -39,6 +39,7 @@
 </template>
 
 <script setup>
+import resqtagLogo from '@/assets/resqtag-logo.png'
 defineProps({ isDark: Boolean })
 
 const projects = [
@@ -51,7 +52,7 @@ const projects = [
   },
   {
     name: 'ResQTag',
-    icon: '🐶',
+    icon: resqtagLogo,
     description: 'A Pet Tag Application that helps pet owners keep track of their pets and ensure their safety.',
     status: 'Completed',
     tags: ['Outsystems'],

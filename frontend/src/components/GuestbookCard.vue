@@ -82,7 +82,7 @@
         class="mb-3 p-3 rounded-xl text-xs flex items-center gap-2"
         :class="isDark ? 'bg-dark-highlight/10 text-dark-highlight' : 'bg-yellow-50 text-yellow-700'"
       >
-        🔒 Private messages are stored securely but won't be displayed publicly.
+        🔒 Only Nairb is able to read your private messages.
       </div>
 
       <!-- Submit -->
@@ -243,9 +243,9 @@ async function submitEntry() {
 
     statusType.value = 'success'
     if (form.value.visibility === 'private') {
-      statusMessage.value = '🔒 Your private message has been saved securely!'
+      statusMessage.value = 'Your private message has been saved securely!'
     } else {
-      statusMessage.value = '✅ Your message has been posted!'
+      statusMessage.value = 'Your message has been posted!'
     }
 
     // Reset form
@@ -259,7 +259,7 @@ async function submitEntry() {
       const msg = error.response.data.message
       statusMessage.value = Array.isArray(msg) ? msg.join(', ') : msg
     } else {
-      statusMessage.value = '❌ Failed to submit. Please try again.'
+      statusMessage.value = 'Failed to submit. Please try again.'
     }
   } finally {
     isSubmitting.value = false

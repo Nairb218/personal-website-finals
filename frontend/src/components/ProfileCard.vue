@@ -4,12 +4,7 @@
       class="w-28 h-28 rounded-full overflow-hidden mb-4 border-4 transition-colors duration-300"
       :class="isDark ? 'border-dark-accent' : 'border-light-accent'"
     >
-      <div
-        class="w-full h-full flex items-center justify-center text-4xl font-bold"
-        :class="isDark ? 'bg-dark-border text-dark-accent' : 'bg-sky-100 text-light-accent'"
-      >
-        👤
-      </div>
+      <img src="@/assets/pfpNairb.jpg" alt="Nairb Varona" class="w-full h-full object-cover" />
     </div>
     <h2 class="text-xl font-bold mb-1">Nairb Ackillis Varona</h2>
     <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-sm">

@@ -4,10 +4,7 @@
       <span>📝</span> About Me
     </h3>
     <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-sm leading-relaxed">
-      Hello! I'm a passionate full-stack developer who loves building modern web applications.
-      I enjoy working with cutting-edge technologies and creating beautiful, functional user experiences.
-      When I'm not coding, you can find me exploring new tech, contributing to open source, or learning
-      something new every day.
+      Hi! My name is Nairb, a 2nd year BSIT student at Asia Pacific College. I'm an aspiring full stack developer who's hungry to improve and learn new things. I have a passion for creating web applications and exploring new technologies. When I'm not coding, you can find me playing my guitar, composing songs that I want to release soon, or jamming with friends. I als love paying online games—especially mobile games.I'm always open to new challenges and opportunities to grow both personally and professionally.
     </p>
     <div class="mt-4 flex flex-wrap gap-2">
       <span

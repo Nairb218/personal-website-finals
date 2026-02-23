@@ -27,12 +27,16 @@
 </template>
 
 <script setup>
+import emailIcon from '@/assets/email-icon.png'
+import githubIcon from '@/assets/github-icon.png'
+import linkedinIcon from '@/assets/linkedin-icon.png'
+
 defineProps({ isDark: Boolean })
 
 const links = [
-  { icon: '📧', label: 'Email', value: 'your.email@example.com', url: 'mailto:your.email@example.com' },
-  { icon: '🐙', label: 'GitHub', value: 'github.com/yourusername', url: 'https://github.com' },
-  { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/yourname', url: 'https://linkedin.com' },
-  { icon: '📄', label: 'Resume', value: 'Download PDF', url: '#' },
+  { icon: emailIcon, label: 'Email', value: 'ngvarona@student.apc.edu.ph', url: 'https://myaccount.microsoft.com/?ref=MeControl' },
+  { icon: githubIcon, label: 'GitHub', value: 'github.com/Nairb218', url: 'https://github.com/Nairb218' },
+  { icon: linkedinIcon, label: 'LinkedIn', value: 'linkedin.com/in/nairb-ackillis-varona-700054293/', url: 'https://www.linkedin.com/in/nairb-ackillis-varona-83b184322/' },
+  { icon: '📞', label: 'Contact Num', value: '0950 801 3908'},
 ]
 </script>

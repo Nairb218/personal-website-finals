@@ -86,14 +86,17 @@
 </template>
 
 <script setup>
+import ivosIcon from '@/assets/andaluciaIVOS.png'
+import colnIcon from '@/assets/coln.png'
+import laufeyIcon from '@/assets/laufey.png'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 defineProps({ isDark: Boolean })
 
 const playlist = [
-  { title: 'Serendipity', artist: 'Laufey', videoId: 'WIj7VVFpvCs' },
-  { title: 'Karma', artist: 'IVOS', videoId: 't9IKlvreloo' },
-  { title: 'Lason', artist: 'COLN', videoId: 'JRtJXGoVIoA' },
+  { icon: laufeyIcon, title: 'Serendipity', artist: 'Laufey', videoId: 'WIj7VVFpvCs' },
+  { icon: ivosIcon, title: 'Karma', artist: 'IV of Spades', videoId: 't9IKlvreloo' },
+  { icon: colnIcon, title: 'Lason', artist: 'COLN', videoId: 'JRtJXGoVIoA' },
 ]
 
 const currentIndex = ref(0)
