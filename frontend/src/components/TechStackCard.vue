@@ -25,18 +25,18 @@
 </template>
 
 <script setup>
-import vueLogo from '@/assets/logos/vue.png'
-import jsLogo from '@/assets/logos/javascriptLogo.png'
-import tsLogo from '@/assets/logos/typescript.png'
-import nestLogo from '@/assets/logos/nestJS.svg'
-import nodeLogo from '@/assets/logos/nodeJS.png'
-import pythonLogo from '@/assets/logos/pythonLogo.png'
-import supabaseLogo from '@/assets/logos/supabase.png'
-import cssLogo from '@/assets/logos/css.png'
-import htmlLogo from '@/assets/logos/html.png'
-import outsystemsLogo from '@/assets/logos/outsystems.png'
-import javaLogo from '@/assets/logos/java.png'
-import arduinoLogo from '@/assets/logos/Arduino_Logo.png'
+import vueLogo from '@/logos/Vue.png'
+import jsLogo from '@/logos/javascriptLogo.png'
+import tsLogo from '@/logos/typescript.png'
+import nestLogo from '@/logos/nestJS.svg'
+import nodeLogo from '@/logos/nodeJS.png'
+import pythonLogo from '@/logos/pythonLogo.png'
+import supabaseLogo from '@/logos/supabase.png'
+import cssLogo from '@/logos/css.png'
+import htmlLogo from '@/logos/html.png'
+import outsystemsLogo from '@/logos/outsystems.png'
+import javaLogo from '@/logos/java.png'
+import arduinoLogo from '@/logos/Arduino_Logo.png'
 
 defineProps({ isDark: Boolean })
 
