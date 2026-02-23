@@ -25,7 +25,9 @@ defineProps({ isDark: Boolean })
 
 const education = [
   { school: 'Asia Pacific College', degree: 'B.S. Information Technology', year: '2024 – Present' },
-  { school: 'Pasay City South High School', degree: 'HUMSS Strand', year: '2019 – 2024' },
-  { school: 'Maricaban Elementary School', degree: 'Grade School', year: '2010 – 2016' },
+  { school: 'Pasay City South High School', degree: 'SHS HUMSS Strand', year: '2022 – 2024' },
+  { school: 'Pasay City South High School', degree: 'Junior High School', year: '2019 – 2021' },
+  { school: 'President Corazon Cory C. Aquino National High School', degree: 'Grade 7', year: '2018 – 2019' },
+  { school: 'Maricaban Elementary School', degree: 'Grade School', year: '2011 – 2018' },
 ]
 </script>

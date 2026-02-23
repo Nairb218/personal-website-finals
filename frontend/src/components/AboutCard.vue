@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-      <span>📝</span> About Me
+      <span></span> About Me
     </h3>
     <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-sm leading-relaxed">
       Hi! My name is Nairb, a 2nd year BSIT student at Asia Pacific College. I'm an aspiring full stack developer who's hungry to improve and learn new things. I have a passion for creating web applications and exploring new technologies. When I'm not coding, you can find me playing my guitar, composing songs that I want to release soon, or jamming with friends. I als love paying online games—especially mobile games.I'm always open to new challenges and opportunities to grow both personally and professionally.

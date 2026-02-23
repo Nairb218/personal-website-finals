@@ -192,14 +192,9 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import axios from 'axios'
+import { supabase } from '../supabase'
 
 const props = defineProps({ isDark: Boolean })
-
-// API base URL
-// Local dev: VITE_API_URL=/api (Vite proxy rewrites to localhost:3000)
-// Production: defaults to '' so calls go to /guestbook which Vercel routes to the API
-const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const form = ref({
   name: '',
@@ -220,8 +215,14 @@ const isFormValid = computed(() => {
 async function fetchEntries() {
   isLoading.value = true
   try {
-    const response = await axios.get(`${API_BASE}/guestbook`)
-    entries.value = response.data.data || []
+    const { data, error } = await supabase
+      .from('guestbook')
+      .select('*')
+      .eq('visibility', 'public')
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    entries.value = data || []
   } catch (error) {
     console.error('Failed to fetch entries:', error)
     entries.value = []
@@ -237,11 +238,14 @@ async function submitEntry() {
   statusMessage.value = ''
 
   try {
-    await axios.post(`${API_BASE}/guestbook`, {
+    const { error } = await supabase.from('guestbook').insert({
       name: form.value.name.trim(),
       message: form.value.message.trim(),
       visibility: form.value.visibility,
+      created_at: new Date().toISOString(),
     })
+
+    if (error) throw error
 
     statusType.value = 'success'
     if (form.value.visibility === 'private') {
@@ -256,13 +260,9 @@ async function submitEntry() {
     // Refresh public entries
     await fetchEntries()
   } catch (error) {
+    console.error('Submit error:', error)
     statusType.value = 'error'
-    if (error.response?.data?.message) {
-      const msg = error.response.data.message
-      statusMessage.value = Array.isArray(msg) ? msg.join(', ') : msg
-    } else {
-      statusMessage.value = 'Failed to submit. Please try again.'
-    }
+    statusMessage.value = error.message || 'Failed to submit. Please try again.'
   } finally {
     isSubmitting.value = false
     setTimeout(() => {

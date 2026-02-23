@@ -99,7 +99,7 @@
           <!-- Photo -->
           <img
             :src="selectedPhoto.src"
-            :alt="selectedPhoto.alt"
+            :alt="selected.alt"
             class="max-w-[90vw] max-h-[90vh] rounded-2xl object-contain shadow-2xl"
           />
 
@@ -141,6 +141,10 @@ import nyipieo from '../assets/nyipieo.jpg'
 import questionMark from '../assets/questionMark.jpg'
 import sleepingTrio from '../assets/sleepingTrio.jpg'
 import trio from '../assets/trio.jpg'
+import mamaNitay from '../assets/mamaNitay.jpg'
+import wItay from '../assets/w Itay.jpg'
+import varonafam from '../assets/varonafam.jpg'
+import tatlongGwapo from '../assets/tatlong gwapo.jpg'
 
 defineProps({ isDark: Boolean })
 
@@ -150,6 +154,8 @@ const selectedPhoto = ref(null)
 const gallery = [
   { src: hearts4, alt: 'Hearts 4' },
   { src: saintNairb, alt: 'Saint Nairb' },
+  { src: mamaNitay, alt: 'Mama Nitay' },
+  { src: wItay, alt: 'w Itay' },
   { src: anghelNairb, alt: 'Angel Nairb' },
   { src: bgcSad, alt: 'BGC Sadboi' },
   { src: intra, alt: 'Intra' },
@@ -157,6 +163,8 @@ const gallery = [
   { src: meinheart, alt: 'Meinheart' },
   { src: nyipieo, alt: 'Nyipieo' },
   { src: questionMark, alt: '?' },
+  { src: tatlongGwapo, alt: 'Tatlong gwapo' },
+  { src: varonafam, alt: 'Varonafam' },
   { src: sleepingTrio, alt: 'My Trio' },
   { src: trio, alt: 'Trio uli' },
   { src: antipsHand, alt: 'Antips' },
