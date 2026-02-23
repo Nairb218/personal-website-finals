@@ -2,7 +2,7 @@
   <div>
     <!-- Header -->
     <h3 class="text-lg font-semibold mb-2 flex items-center gap-2">
-      <span>🏞️</span> Gallery
+      <span></span> Gallery
       <button
         @click="showModal = true"
         class="ml-auto text-xs font-medium underline underline-offset-2 transition-colors duration-200"

@@ -8,7 +8,7 @@
     </div>
     <h2 class="text-xl font-bold mb-1">Nairb Ackillis Varona</h2>
     <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-sm">
-      Full-Stack Developer
+      Aspiring Full-Stack Developer, Music gives life
     </p>
     <div class="flex gap-2 mt-3">
       <span

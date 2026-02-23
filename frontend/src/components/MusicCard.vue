@@ -56,7 +56,7 @@
     </div>
 
     <!-- Playlist -->
-    <div class="mt-3 space-y-2">
+    <div class="mt-3 space-y-1.5 max-h-[9.5rem] overflow-y-auto pr-1 playlist-scroll">
       <div
         v-for="(song, i) in playlist"
         :key="i"
@@ -105,6 +105,9 @@ const playlist = [
   { title: 'Serendipity', artist: 'Laufey', videoId: 'WIj7VVFpvCs' },
   { title: 'Karma', artist: 'IV of Spades', videoId: 't9IKlvreloo' },
   { title: 'Lason', artist: 'COLN', videoId: 'JRtJXGoVIoA' },
+  { title: 'Must Be Love', artist: 'Laufey', videoId: 'FS225TRenVM' },
+  { title: 'Rewind', artist: 'IV of Spades', videoId: 'rzqPLKAQgps' },
+  { title: 'Burnout', artist: 'Johnoy Danao', videoId: 'uvGN8r0AFkw' },
 ]
 
 const currentIndex = ref(0)
@@ -266,3 +269,23 @@ onBeforeUnmount(() => {
   }
 })
 </script>
+
+<style scoped>
+.playlist-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(128, 128, 128, 0.3) transparent;
+}
+.playlist-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.playlist-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.playlist-scroll::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 4px;
+}
+.playlist-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.5);
+}
+</style>

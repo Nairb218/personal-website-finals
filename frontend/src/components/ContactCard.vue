@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-      <span>📬</span> Contact & Resources
+      <span></span> Contact & Resources
     </h3>
     <div class="grid grid-cols-1 gap-3">
       <a

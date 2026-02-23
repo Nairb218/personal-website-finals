@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-      <span>💻</span> Tech Stack
+      <span></span> Tech Stack
     </h3>
     <div class="grid grid-cols-4 gap-2">
       <div

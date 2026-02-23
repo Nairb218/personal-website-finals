@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-      <span>📖</span> Guestbook
+      <span></span> Guestbook
     </h3>
 
     <!-- Form -->
@@ -55,7 +55,7 @@
       </div>
 
       <!-- Message -->
-      <div class="mb-3">
+      <div>
         <label class="block text-xs font-medium mb-1" :class="isDark ? 'text-dark-muted' : 'text-light-muted'">
           Message *
         </label>
@@ -63,15 +63,15 @@
           v-model="form.message"
           placeholder="Leave a message..."
           rows="3"
-          maxlength="500"
+          maxlength="300"
           class="w-full px-3 py-2 rounded-xl text-sm outline-none transition-all duration-300 border resize-none"
           :class="isDark
             ? 'bg-dark-border border-dark-border text-dark-text placeholder-dark-muted focus:border-dark-accent'
             : 'bg-sky-50 border-light-border text-light-text placeholder-light-muted focus:border-light-accent'"
         ></textarea>
-        <div class="text-right mt-1">
+        <div class="text-right">
           <span class="text-xs" :class="isDark ? 'text-dark-muted' : 'text-light-muted'">
-            {{ form.message.length }}/500
+            {{ form.message.length }}/300
           </span>
         </div>
       </div>
@@ -255,7 +255,7 @@ const statusType = ref('')
 const showMessagesModal = ref(false)
 
 const isFormValid = computed(() => {
-  return form.value.name.trim().length >= 2 && form.value.message.trim().length >= 3
+  return form.value.name.trim().length >= 1 && form.value.message.trim().length >= 1
 })
 
 function openMessagesModal() {
