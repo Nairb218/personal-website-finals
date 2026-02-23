@@ -99,7 +99,7 @@
           <!-- Photo -->
           <img
             :src="selectedPhoto.src"
-            :alt="selected.alt"
+            :alt="selectedPhoto.alt"
             class="max-w-[90vw] max-h-[90vh] rounded-2xl object-contain shadow-2xl"
           />
 

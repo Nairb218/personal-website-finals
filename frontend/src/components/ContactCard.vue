@@ -3,7 +3,7 @@
     <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
       <span>📬</span> Contact & Resources
     </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div class="grid grid-cols-1 gap-3">
       <a
         v-for="(link, i) in links"
         :key="i"

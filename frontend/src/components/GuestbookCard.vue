@@ -1,11 +1,11 @@
 <template>
   <div>
     <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-      <span></span> Guestbook
+      <span>📖</span> Guestbook
     </h3>
 
     <!-- Form -->
-    <form @submit.prevent="submitEntry" class="mb-6">
+    <form @submit.prevent="submitEntry" class="mb-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <!-- Name -->
         <div>
@@ -117,76 +117,121 @@
       </div>
     </form>
 
-    <!-- Entries -->
-    <div>
-      <div class="flex items-center justify-between mb-3">
-        <h4 class="text-sm font-semibold" :class="isDark ? 'text-dark-muted' : 'text-light-muted'">
-          Public Messages ({{ entries.length }})
-        </h4>
-        <button
-          @click="fetchEntries"
-          :disabled="isLoading"
-          class="text-xs px-3 py-1 rounded-lg transition-colors duration-300"
-          :class="isDark ? 'text-dark-accent hover:bg-dark-border' : 'text-light-accent hover:bg-sky-100'"
-        >
-          {{ isLoading ? 'Loading...' : '↻ Refresh' }}
-        </button>
-      </div>
-
-      <!-- Loading State -->
-      <div v-if="isLoading" class="space-y-3">
-        <div
-          v-for="n in 3"
-          :key="n"
-          class="p-4 rounded-xl animate-pulse"
-          :class="isDark ? 'bg-dark-border' : 'bg-sky-50'"
-        >
-          <div class="h-4 rounded w-1/4 mb-2" :class="isDark ? 'bg-dark-bg' : 'bg-gray-200'"></div>
-          <div class="h-3 rounded w-3/4" :class="isDark ? 'bg-dark-bg' : 'bg-gray-200'"></div>
-        </div>
-      </div>
-
-      <!-- Empty State -->
-      <div
-        v-else-if="entries.length === 0"
-        class="text-center py-8"
-        :class="isDark ? 'text-dark-muted' : 'text-light-muted'"
+    <!-- View Public Messages Button -->
+    <button
+      @click="openMessagesModal"
+      class="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 border"
+      :class="isDark
+        ? 'bg-dark-border border-dark-border text-dark-accent hover:bg-dark-accent/10 hover:border-dark-accent'
+        : 'bg-sky-50 border-light-border text-light-accent hover:bg-light-accent/10 hover:border-light-accent'"
+    >
+      💬 View Public Messages
+      <span
+        v-if="entries.length > 0"
+        class="px-2 py-0.5 rounded-full text-xs font-bold"
+        :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/10 text-light-accent'"
       >
-        <p class="text-3xl mb-2">📝</p>
-        <p class="text-sm">No public messages yet. Be the first to sign!</p>
-      </div>
+        {{ entries.length }}
+      </span>
+    </button>
 
-      <!-- Entries List -->
-      <div v-else class="space-y-3 max-h-96 overflow-y-auto pr-1">
+    <!-- Public Messages Modal -->
+    <Teleport to="body">
+      <Transition name="modal">
         <div
-          v-for="entry in entries"
-          :key="entry.id"
-          class="p-4 rounded-xl transition-colors duration-300"
-          :class="isDark ? 'bg-dark-border' : 'bg-sky-50'"
+          v-if="showMessagesModal"
+          class="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style="background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);"
+          @click.self="showMessagesModal = false"
         >
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center gap-2">
-              <div
-                class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-                :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/10 text-light-accent'"
-              >
-                {{ getInitials(entry.name) }}
+          <div
+            class="relative rounded-2xl p-5 w-full max-w-lg max-h-[80vh] flex flex-col shadow-2xl"
+            :class="isDark ? 'bg-dark-card border border-dark-border' : 'bg-white border border-light-border'"
+          >
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between mb-4 flex-shrink-0">
+              <h3 class="text-base font-semibold flex items-center gap-2">
+                💬 Public Messages ({{ entries.length }})
+              </h3>
+              <div class="flex items-center gap-2">
+                <button
+                  @click="fetchEntries"
+                  :disabled="isLoading"
+                  class="text-xs px-3 py-1 rounded-lg transition-colors duration-300"
+                  :class="isDark ? 'text-dark-accent hover:bg-dark-border' : 'text-light-accent hover:bg-sky-100'"
+                >
+                  {{ isLoading ? '...' : '↻' }}
+                </button>
+                <button
+                  @click="showMessagesModal = false"
+                  class="w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold transition-all duration-200"
+                  :class="isDark ? 'hover:bg-dark-border text-dark-muted' : 'hover:bg-gray-100 text-gray-400'"
+                >
+                  ✕
+                </button>
               </div>
-              <span class="text-sm font-semibold">{{ entry.name }}</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs" :class="isDark ? 'text-dark-accent' : 'text-light-accent'">🔓</span>
-              <span class="text-xs" :class="isDark ? 'text-dark-muted' : 'text-light-muted'">
-                {{ formatDate(entry.created_at) }}
-              </span>
+
+            <!-- Modal Body -->
+            <div class="flex-1 overflow-y-auto pr-1">
+              <!-- Loading State -->
+              <div v-if="isLoading" class="space-y-3">
+                <div
+                  v-for="n in 3"
+                  :key="n"
+                  class="p-4 rounded-xl animate-pulse"
+                  :class="isDark ? 'bg-dark-border' : 'bg-sky-50'"
+                >
+                  <div class="h-4 rounded w-1/4 mb-2" :class="isDark ? 'bg-dark-bg' : 'bg-gray-200'"></div>
+                  <div class="h-3 rounded w-3/4" :class="isDark ? 'bg-dark-bg' : 'bg-gray-200'"></div>
+                </div>
+              </div>
+
+              <!-- Empty State -->
+              <div
+                v-else-if="entries.length === 0"
+                class="text-center py-12"
+                :class="isDark ? 'text-dark-muted' : 'text-light-muted'"
+              >
+                <p class="text-3xl mb-2">📝</p>
+                <p class="text-sm">No public messages yet. Be the first to sign!</p>
+              </div>
+
+              <!-- Entries List -->
+              <div v-else class="space-y-3">
+                <div
+                  v-for="entry in entries"
+                  :key="entry.id"
+                  class="p-4 rounded-xl transition-colors duration-300"
+                  :class="isDark ? 'bg-dark-border' : 'bg-sky-50'"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
+                        :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/10 text-light-accent'"
+                      >
+                        {{ getInitials(entry.name) }}
+                      </div>
+                      <span class="text-sm font-semibold">{{ entry.name }}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs" :class="isDark ? 'text-dark-accent' : 'text-light-accent'">🔓</span>
+                      <span class="text-xs" :class="isDark ? 'text-dark-muted' : 'text-light-muted'">
+                        {{ formatDate(entry.created_at) }}
+                      </span>
+                    </div>
+                  </div>
+                  <p class="text-sm" :class="isDark ? 'text-dark-text' : 'text-light-text'">
+                    {{ entry.message }}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-          <p class="text-sm" :class="isDark ? 'text-dark-text' : 'text-light-text'">
-            {{ entry.message }}
-          </p>
         </div>
-      </div>
-    </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -207,10 +252,16 @@ const isLoading = ref(false)
 const isSubmitting = ref(false)
 const statusMessage = ref('')
 const statusType = ref('')
+const showMessagesModal = ref(false)
 
 const isFormValid = computed(() => {
   return form.value.name.trim().length >= 2 && form.value.message.trim().length >= 3
 })
+
+function openMessagesModal() {
+  showMessagesModal.value = true
+  fetchEntries()
+}
 
 async function fetchEntries() {
   isLoading.value = true
@@ -299,3 +350,26 @@ onMounted(() => {
   fetchEntries()
 })
 </script>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.25s ease;
+}
+.modal-enter-active > div,
+.modal-leave-active > div {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+.modal-enter-from > div {
+  transform: scale(0.95);
+  opacity: 0;
+}
+.modal-leave-to > div {
+  transform: scale(0.95);
+  opacity: 0;
+}
+</style>

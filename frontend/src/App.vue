@@ -68,8 +68,8 @@
           <ContactCard :isDark="isDark" />
         </BentoCard>
 
-        <!-- Guestbook - spans full width -->
-        <BentoCard :isDark="isDark" class="lg:col-span-4 md:col-span-2">
+        <!-- Guestbook - spans 2 cols -->
+        <BentoCard :isDark="isDark" class="lg:col-span-2 md:col-span-1">
           <GuestbookCard :isDark="isDark" />
         </BentoCard>
       </main>
