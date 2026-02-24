@@ -6,16 +6,16 @@
     >
       <img src="@/assets/pfpNairb.jpg" alt="Nairb Varona" class="w-full h-full object-cover" />
     </div>
-    <h2 class="text-xl font-bold mb-1">Nairb Ackillis Varona</h2>
+    <h2 class="text-xl font-bold mb-1">Nairb Varona</h2>
     <p :class="isDark ? 'text-dark-muted' : 'text-light-muted'" class="text-sm">
-      Aspiring Full-Stack Developer, Music gives life
+      Aspiring Full-Stack Developer, Fitness Enthusiast, Band Guitarist.
     </p>
     <div class="flex gap-2 mt-3">
       <span
         class="px-3 py-1 rounded-full text-xs font-medium transition-colors duration-300"
         :class="isDark ? 'bg-dark-accent/20 text-dark-accent' : 'bg-light-accent/10 text-light-accent'"
       >
-        Open for Challenges
+        Open for Challenges, Collaborations, and Opportunities
       </span>
     </div>
   </div>

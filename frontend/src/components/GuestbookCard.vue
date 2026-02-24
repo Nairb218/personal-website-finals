@@ -104,17 +104,6 @@
         <span v-else>Sign Guestbook 𓂃🖊</span>
       </button>
 
-      <!-- Status Messages -->
-      <div v-if="statusMessage" class="mt-3">
-        <p
-          class="text-sm p-3 rounded-xl"
-          :class="statusType === 'success'
-            ? (isDark ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-700')
-            : (isDark ? 'bg-red-900/30 text-red-400' : 'bg-red-100 text-red-700')"
-        >
-          {{ statusMessage }}
-        </p>
-      </div>
     </form>
 
     <!-- View Public Messages Button -->
@@ -134,6 +123,24 @@
         {{ entries.length }}
       </span>
     </button>
+
+    <!-- Toast Notification -->
+    <Teleport to="body">
+      <Transition name="toast">
+        <div
+          v-if="statusMessage"
+          class="fixed bottom-5 right-5 z-[9999] max-w-xs w-full px-4 py-3 rounded-xl shadow-lg flex items-start gap-3 pointer-events-none select-none"
+          :class="statusType === 'success'
+            ? (isDark ? 'bg-dark-card border border-green-500/40 text-green-400' : 'bg-white border border-green-300 text-green-700')
+            : (isDark ? 'bg-dark-card border border-red-500/40 text-red-400' : 'bg-white border border-red-300 text-red-700')"
+        >
+          <span class="text-base leading-none mt-0.5 flex-shrink-0">
+            {{ statusType === 'success' ? '✓' : '✕' }}
+          </span>
+          <span class="text-sm leading-snug">{{ statusMessage }}</span>
+        </div>
+      </Transition>
+    </Teleport>
 
     <!-- Public Messages Modal -->
     <Teleport to="body">
@@ -352,6 +359,23 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* Toast transitions */
+.toast-enter-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.toast-leave-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.toast-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.toast-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* Modal transitions */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.25s ease;

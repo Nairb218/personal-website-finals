@@ -145,6 +145,7 @@ import mamaNitay from '../assets/mamaNitay.jpg'
 import wItay from '../assets/w Itay.jpg'
 import varonafam from '../assets/varonafam.jpg'
 import tatlongGwapo from '../assets/tatlong gwapo.jpg'
+import pau from '../assets/pau.jpg'
 
 defineProps({ isDark: Boolean })
 
@@ -155,7 +156,7 @@ const gallery = [
   { src: hearts4, alt: 'Hearts 4' },
   { src: saintNairb, alt: 'Saint Nairb' },
   { src: mamaNitay, alt: 'Mama Nitay' },
-  { src: wItay, alt: 'w Itay' },
+  { src: lugawanbabies, alt: 'Lugawan Babies' },
   { src: anghelNairb, alt: 'Angel Nairb' },
   { src: bgcSad, alt: 'BGC Sadboi' },
   { src: intra, alt: 'Intra' },
@@ -164,6 +165,7 @@ const gallery = [
   { src: nyipieo, alt: 'Nyipieo' },
   { src: questionMark, alt: '?' },
   { src: tatlongGwapo, alt: 'Tatlong gwapo' },
+  { src: wItay, alt: 'w Itay' },
   { src: varonafam, alt: 'Varonafam' },
   { src: sleepingTrio, alt: 'My Trio' },
   { src: trio, alt: 'Trio uli' },
@@ -174,8 +176,8 @@ const gallery = [
   { src: sabitPanyeng, alt: 'Sabit Panyeng' },
   { src: trioGae, alt: 'Trio Gae' },
   { src: wRomeo, alt: 'w Leo' },
-  { src: lugawanbabies, alt: 'Lugawan Babies' },
   { src: lugawanmat, alt: 'Lugawan sa Debut ni Namih' },
+  { src: pau, alt: 'Pau' },
 ]
 
 const previewGallery = computed(() => gallery.slice(0, 6))
